@@ -19,9 +19,9 @@ public interface AccessLogDao extends JpaRepository<AccessLog, Integer>, JpaSpec
     /**
      * 根据IP查找记录
      * Created on 2018/3/28 15:37
+     * <p>
+     * select 语句中表名要和实体类名字一样，区分大小写，大小写
      **/
-   /* @Query("select count(id) from accesslog where ip=?1 and substring(access_time,1,10)=?2 ")
-    Integer queryCount(@Param("ip") String ip, @Param("access_time") String access_time);*/
-    @Query("select ip from accesslog where ip=?1 and substring(access_time,1,10)=?2 ")
-    List<AccessLog> queryCount( String ip, String accesstime);
+    @Query("select count(id) from AccessLog where ip=?1 and substring(access_time,1,10)=?2 ")
+    int queryCount(String ip,String accesstime);
 }

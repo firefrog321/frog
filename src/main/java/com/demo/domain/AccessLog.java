@@ -18,12 +18,26 @@ public class AccessLog implements Serializable {
     private int id;
 
     private String ip;
+
     @Column(name = "access_time")
     private String accesstime;
+
     @Column(name = "access_class")
     private String accessclass;
+
     @Column(name = "access_method")
     private String accessmethod;
+
+    @Column(name = "address")
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public int getId() {
         return id;

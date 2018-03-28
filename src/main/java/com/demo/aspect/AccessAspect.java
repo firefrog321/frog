@@ -49,7 +49,6 @@ public class AccessAspect {
      */
     @Around("point()")
     public Object doAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        System.out.println("环绕通知的目标方法名：" + proceedingJoinPoint.getSignature().getName());
 
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
                 .getRequestAttributes();
