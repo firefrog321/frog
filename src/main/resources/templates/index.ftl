@@ -13,7 +13,7 @@
                         <h3>
                             <a href="/article/${article.articleId}">${article.title!}</a>
                         </h3>
-                        <p class="card-text">${article.preview!}</p>
+                        <p style="font-size: 14px ">${article.preview!}....</p>
                         <span class="small">${article.createDate!}</span>
                         <span class="small">&nbsp;&nbsp;by&nbsp;&nbsp;${article.author!}</span>
 
