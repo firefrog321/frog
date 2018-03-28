@@ -31,21 +31,21 @@ public class IndexController {
     @Autowired
     private ArticleService articleService;
 
+    /**
+     * 主页
+     * Created on 2018/3/28 14:05
+     **/
     @RequestMapping("/")
     public String index(Model model) {
         //获取首页文章列表
         Page<Article> articlePage = articleService.findArticlePage();
+        //获取文章的预览
         Iterator<Article> it = articlePage.getContent().iterator();
         while (it.hasNext()) {
-
-            Article article=it.next();
-            String content=article.getContent();
-            String preview=artcileSubStr(content, SUBSTR_SIZE);
-            article.setPreview(preview);
+            Article article = it.next();
+            article.setPreview(artcileSubStr(article.getContent(), SUBSTR_SIZE));
         }
-
         model.addAttribute("articlePage", articlePage);
-
         return "index";
     }
 

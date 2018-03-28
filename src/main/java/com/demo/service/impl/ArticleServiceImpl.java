@@ -3,6 +3,7 @@ package com.demo.service.impl;
 import com.demo.dao.ArticleDao;
 import com.demo.domain.Article;
 import com.demo.service.ArticleService;
+import com.demo.utils.MarkDownUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,7 +32,7 @@ public class ArticleServiceImpl implements ArticleService {
      * 分页查询Article
      **/
     public Page<Article> findArticlePage() {
-        //指定pageable对象 从0开始 根据create_date字段desc排序
+        //指定pageable对象 从0开始 先根据create_date字段desc排序，再articleId排序
         String[] sortColummn = {"createDate", "articleId"};
         Pageable pageable = PageRequest.of(0, PAGE_SIZE, new Sort(Sort.Direction.DESC, sortColummn));
         return articleDao.findAll(pageable);
@@ -39,7 +40,10 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article findById(int articleId) {
-        return articleDao.findById(articleId);
+        Article article=articleDao.findById(articleId);
+        //md to html
+        article.setContent(MarkDownUtils.mdToHtml(article.getContent()));
+        return article;
     }
 
     /**

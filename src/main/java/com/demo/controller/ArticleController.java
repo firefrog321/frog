@@ -27,7 +27,7 @@ public class ArticleController {
 
     @RequestMapping("/article/{articleid}")
     public String viewArticle(@PathVariable int articleid, Model model) {
-        articleService.findById(articleid);
+        model.addAttribute("article", articleService.findById(articleid));
         return "article_viewPage";
     }
 
@@ -62,6 +62,7 @@ public class ArticleController {
      **/
     static String artcileSubStr(String content, int length) {
         if (content.length() < length) length = content.length();
+        //转换成HTML
         return MarkDownUtils.mdToHtml(content.substring(0, length));
     }
 }
