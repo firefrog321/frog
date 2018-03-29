@@ -1,6 +1,8 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">frog</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03"
+<nav class="navbar navbar-expand-sm  bg-white">
+    <div>
+        <a class="navbar-brand frog-navbar-frog" href="#">frog</a>
+    </div>
+    <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarsExample03"
             aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,10 +13,10 @@
                 <a class="nav-link" href="/">首页 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="/login">登陆</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="/article/editor">发布文章</a>
+                <a class="nav-link " href="/article/editor">发布文章</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown03" data-toggle="dropdown"
@@ -30,4 +32,5 @@
             <input class="form-control" type="text" placeholder="Search">
         </form>
     </div>
+
 </nav>
