@@ -1,5 +1,10 @@
 @charset "utf-8";
 
-.frog-navbar-frog {
-margin-left: 30px;
+.frog-navbar {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
+
+.frog-navbar-frog {
+    font-size: 30px;
+}
+

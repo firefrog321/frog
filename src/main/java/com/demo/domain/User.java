@@ -1,9 +1,8 @@
 package com.demo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author Mr.Deng
@@ -18,6 +17,9 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String note;
+
+    @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
+    private Set<Role> roles;
 
     public int getId() {
         return id;
@@ -49,5 +51,13 @@ public class User implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

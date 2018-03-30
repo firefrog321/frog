@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="utf-8">
+<html lang="utf-8"
 <#include "header.ftl">
 <body>
 <#include "nav.ftl">
@@ -13,11 +13,13 @@
                         <h3>
                             <a href="/article/${article.articleId}">${article.title!}</a>
                         </h3>
-                        <p style="font-size: 14px ">${article.preview!}....</p>
+                        <div>
+                            <p style="font-size: 14px ">${article.preview!}....</p>
+                        </div>
                         <span class="small">${article.createDate!}</span>
                         <span class="small">&nbsp;&nbsp;by&nbsp;&nbsp;${article.author!}</span>
 
-                        <span class="small" >&nbsp;&nbsp;&nbsp;&nbsp;浏览（${article.viewNum!'0'}）</span>
+                        <span class="small">&nbsp;&nbsp;&nbsp;&nbsp;浏览（${article.viewNum!'0'}）</span>
 
                     </div>
                 </div>
