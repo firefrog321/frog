@@ -13,7 +13,7 @@
 
     <form action="/article/save" method="post">
 
-        <div style="margin-top: 50px">
+        <div style="margin-top: 80px">
             <#--<input type="hidden" name="articleId" value="">-->
             <label>标题</label>
             <input type="text" name="title">

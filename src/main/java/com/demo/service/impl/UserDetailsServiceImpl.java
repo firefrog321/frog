@@ -1,3 +1,4 @@
+/*
 package com.demo.service.impl;
 
 import com.demo.dao.UserDao;
@@ -14,11 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
+*/
 /**
  * 重写UserDetailsService 用于验证用户登陆
  * @author Mr.Deng
  * Created on 2018/3/30 9:58
- **/
+ **//*
+
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
@@ -41,3 +44,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 user.getPassword(), grantedAuthorities);
     }
 }
+*/

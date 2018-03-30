@@ -54,6 +54,7 @@ public class ArticleServiceImpl implements ArticleService {
     public Article save(Article article) {
         article.setAuthor("dengym");
         article.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        System.out.print(article.getContent());
         articleDao.save(article);
         return null;
     }

@@ -46,6 +46,7 @@ public class ArticleController {
      **/
     @RequestMapping(value = "/article/save", method = {RequestMethod.POST})
     public String articleSave(Article article, Model model) {
+        System.out.print(article.getContent());
         articleService.save(article);
         //获取首页文章列表
         Page<Article> articlePage = articleService.findArticlePage();
