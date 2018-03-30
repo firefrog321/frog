@@ -13,7 +13,8 @@ import java.util.Date;
  * @version 1.0
  */
 @Entity
-@Table(name = "article")
+@Table(name = "article", indexes = {@Index(name = "article_tags", columnList = "tags", unique = false),
+        @Index(name = "article_viewNum", columnList = "view_Num", unique = false)})
 public class Article implements Serializable {
 
     @Id

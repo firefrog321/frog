@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Created on 2018/3/28 15:00
  **/
 @Entity
-@Table(name = "accesslog")
+@Table(name = "accesslog", indexes = {@Index(name = "accesslog_ip", columnList = "ip", unique = false)})
 public class AccessLog implements Serializable {
 
     @Id

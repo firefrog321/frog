@@ -28,6 +28,10 @@ public class ArticleController {
     @RequestMapping("/article/{articleid}")
     public String viewArticle(@PathVariable int articleid, Model model) {
         model.addAttribute("article", articleService.findById(articleid));
+
+        //更新浏览数量
+        articleService.updateArticleViewNum(articleid);
+
         return "article_viewPage";
     }
 
@@ -49,7 +53,7 @@ public class ArticleController {
         System.out.print(article.getContent());
         articleService.save(article);
         //获取首页文章列表
-        Page<Article> articlePage = articleService.findArticlePage();
+        Page<Article> articlePage = articleService.findArticlePage(0);
         model.addAttribute("articlePage", articlePage);
         return "index";
     }

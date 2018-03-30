@@ -38,7 +38,7 @@ public class IndexController {
     @RequestMapping("/")
     public String index(Model model) {
         //获取首页文章列表
-        Page<Article> articlePage = articleService.findArticlePage();
+        Page<Article> articlePage = articleService.findArticlePage(0);
         //获取文章的预览
         Iterator<Article> it = articlePage.getContent().iterator();
         while (it.hasNext()) {
