@@ -39,6 +39,7 @@ public class ArticleServiceImpl implements ArticleService {
     /**
      * 分页查询Article
      **/
+    @SuppressWarnings("unchecked")
     public Page<Article> findArticlePage(int page) {
 
         if (redisService.haskey(ConstantsUtils.REDIS_ARTICLE_KEY + "page_" + page)) {

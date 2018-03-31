@@ -29,7 +29,7 @@
         <div class="col-md-4 d-none d-md-block">
             <div class="sub01">
                 <h3></h3>
-                <img  src="/images/joker.gif" style="width: 155px;height: 155px;">
+                <img src="/images/0.gif" class=" frog-index-jokerimage " >
                 <p></p>
 
             </div>

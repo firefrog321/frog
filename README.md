@@ -1,5 +1,7 @@
-# frog
+# [frog](http://frog.jcker.org/) 
     简单网站，练手。。。。
+    养成自学的习惯，同时学以致用
+    记录自己的学习历程
 
 ## 功能
 * 响应式适应所有客户端
@@ -9,24 +11,23 @@
 ### 后台技术
 * Spring boot 
 * Spring MVC
+* Spring Could
 * Spring Data JPA
-* Spring JpaRepository
 * MySQL
 * Freemarker
-* reids
-* memcached
+* Reids
 ### 前台技术
 * Bootstrap4
 * jQuery
 * highlight
-* mdeditor
-* jquery.twbsPagination
-* jquery.datatables
+* editor.md
 ## 联系方式 
-邮箱：helloalanturing@gmail.com  
+邮箱：dayumom@gmail.com  
 QQ群：461217554(技术群)  363547584(聊骚群)  
-微信公众号：jcker
-![微信公众号](http://github.jcker.org/images/wechat_qrcode.jpg) 
+站点：http://frog.jcker.org 
+
+微信公众号：firefrog
+![微信公众号](http://frog.jcker.org/images/wechat.jpg) 
 
 
 

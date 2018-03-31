@@ -8,3 +8,10 @@
     font-size: 30px;
 }
 
+.frog-index-jokerimage{
+    width: 150px; height: 155px;
+
+    background-size: 2900%;
+    animation: heart-burst steps(28) 5s infinite both;
+}
+

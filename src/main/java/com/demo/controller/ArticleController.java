@@ -68,6 +68,6 @@ public class ArticleController {
     static String artcileSubStr(String content, int length) {
         if (content.length() < length) length = content.length();
         //转换成HTML
-        return MarkDownUtils.mdToHtml(content.substring(0, length));
+        return MarkDownUtils.mdToText(content.substring(0, length));
     }
 }
