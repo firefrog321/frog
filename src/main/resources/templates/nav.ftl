@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-md bg-white fixed-top rounded frog-navbar">
     <div class="container">
         <a class="navbar-brand frog-navbar-frog" href="/">frog</a>
+
         <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#navbarsExample03"
                 aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

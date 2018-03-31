@@ -25,6 +25,16 @@
                 </div>
             </#list>
         </div>
+
+        <div class="col-md-4 d-none d-md-block">
+            <div class="sub01">
+                <h3></h3>
+                <img  src="/images/joker.gif" style="width: 155px;height: 155px;">
+                <p></p>
+
+            </div>
+        </div>
+
     </div>
 </div>
 

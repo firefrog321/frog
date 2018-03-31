@@ -20,8 +20,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-
 /**
+ * 文章业务处理类
  * @author Mr.Deng
  * Created on 2018/3/27 13:52
  **/
@@ -44,7 +44,7 @@ public class ArticleServiceImpl implements ArticleService {
         if (redisService.haskey(ConstantsUtils.REDIS_ARTICLE_KEY + "page_" + page)) {
             //List<Page<Article>> redisList= (List)redisService.get(ConstantsUtils.REDIS_ARTICLE_KEY + "page_" + page);
             //return redisList.get(0);
-            System.out.print("redis 执行了一次");
+            //System.out.print("redis 执行了一次");
             return (Page<Article>)redisService.get(ConstantsUtils.REDIS_ARTICLE_KEY + "page_" + page);
         }
 
@@ -98,8 +98,8 @@ public class ArticleServiceImpl implements ArticleService {
         System.out.print(article.getContent());
         articleDao.save(article);
 
-        //存入redis
-        redisService.set(ConstantsUtils.REDIS_ARTICLE_KEY + articleId, article,
+        //刷新redis缓存
+        redisService.set(ConstantsUtils.REDIS_ARTICLE_KEY + article.getArticleId(), article,
                 ConstantsUtils.REDIS_ARTICLE_TIME, TimeUnit.MINUTES);
 
         return null;
