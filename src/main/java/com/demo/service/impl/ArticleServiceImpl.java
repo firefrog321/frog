@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 文章业务处理类
+ *
  * @author Mr.Deng
  * Created on 2018/3/27 13:52
  **/
@@ -45,11 +46,11 @@ public class ArticleServiceImpl implements ArticleService {
     @SuppressWarnings("unchecked")
     public Page<Article> findArticlePage(int page) {
 
-        if (redisService.haskey(ConstantsUtils.REDIS_ARTICLE_KEY + "page_" + page)&&page==0) {
+        if (redisService.haskey(ConstantsUtils.REDIS_ARTICLE_KEY + "page_" + page) && page == 0) {
             //List<Page<Article>> redisList= (List)redisService.get(ConstantsUtils.REDIS_ARTICLE_KEY + "page_" + page);
             //return redisList.get(0);
             //System.out.print("redis 执行了一次");
-            return (Page<Article>)redisService.get(ConstantsUtils.REDIS_ARTICLE_KEY + "page_" + page);
+            return (Page<Article>) redisService.get(ConstantsUtils.REDIS_ARTICLE_KEY + "page_" + page);
         }
 
         //指定pageable对象 从0开始 先根据create_date字段desc排序，再articleId排序
@@ -117,13 +118,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
 
-    /**根据tags查询文章，只支持单个tags
+    /**
+     * 根据tags查询文章，只支持单个tags
      * tags没有就根据page查询文章
      * Created on 2018/4/2 10:06
      **/
-    public Page<Article> getArticleByTags(String tags,int page){
+    public Page<Article> getArticleByTags(String tags, int page) {
 
-        if (StringUtils.isEmpty(tags)){
+        if (StringUtils.isEmpty(tags)) {
             return findArticlePage(page);
         }
         //指定pageable对象 从0开始 先根据create_date字段desc排序，再articleId排序
@@ -135,7 +137,7 @@ public class ArticleServiceImpl implements ArticleService {
         };
 
         Pageable pageable = PageRequest.of(page, PAGE_SIZE, new Sort(Sort.Direction.DESC, sortColummn));
-        Page<Article> articlePage = articleDao.findAll(specification,pageable);
+        Page<Article> articlePage = articleDao.findAll(specification, pageable);
         return articlePage;
     }
 }

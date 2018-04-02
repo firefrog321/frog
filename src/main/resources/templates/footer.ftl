@@ -13,7 +13,12 @@ JavaScript 插件。具体操作就是将下列 <script> 标签放到页面底�
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-<script src="/highlight/js/highlight.pack.js"></script>
+<#--<script src="/highlight/js/highlight.pack.js"></script>-->
+
+
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+
+
 <script src="/js/frog.js"></script>
 <!--分页-->
 <script src="/js/jquery.twbsPagination.min.js"></script>
