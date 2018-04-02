@@ -17,4 +17,7 @@ public interface ArticleService {
 
     //更新浏览数量
     void updateArticleViewNum(int articleId);
+    //根据tags查询文章，只支持单个tags
+    Page<Article> getArticleByTags(String tags,int page);
+
 }

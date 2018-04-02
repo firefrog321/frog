@@ -14,6 +14,10 @@
 
     <link rel="stylesheet" href="/css/style.css">
 
+    <link rel="stylesheet" href="/highlight/css/xcode.css">
+
+    <!--分页-->
+    <link rel="stylesheet" href="/css/simplePagination.css">
     <title>frog</title>
 
 

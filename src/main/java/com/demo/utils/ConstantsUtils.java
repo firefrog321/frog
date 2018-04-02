@@ -8,5 +8,8 @@ package com.demo.utils;
  **/
 public class ConstantsUtils {
     public static final String REDIS_ARTICLE_KEY = "article_";//文章key
+
+    public static final int PREVIEW_SUBSTR_SIZE = 100; //截取字符串长度
+
     public static final int REDIS_ARTICLE_TIME = 5;//redis article有效期
 }

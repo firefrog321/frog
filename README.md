@@ -1,7 +1,7 @@
 # [frog](http://frog.jcker.org/) 
-    简单网站，练手。。。。
-    养成自学的习惯，同时学以致用
-    记录自己的学习历程
+* 简单网站，练手。。。。
+* 养成自学的习惯，同时学以致用
+* 记录自己的学习历程
 
 ## 功能
 * 响应式适应所有客户端
@@ -15,7 +15,7 @@
 * Spring Data JPA
 * MySQL
 * Freemarker
-* Reids
+* Redis
 ### 前台技术
 * Bootstrap4
 * jQuery

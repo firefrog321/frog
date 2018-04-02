@@ -12,13 +12,16 @@
                 <#--<li class="nav-item active">
                     <a class="nav-link" href="/">首页 <span class="sr-only">(current)</span></a>
                 </li>-->
-                <li class="nav-item">
+               <#-- <li class="nav-item">
                     <a class="nav-link" href="/login">登陆</a>
                 </li>
                 <li class="nav-item" >
                     <a class="nav-link " href="/article/editor">发布文章</a>
-                </li>
-                <li class="nav-item dropdown">
+                </li>-->
+                    <li class="nav-item" >
+                        <a class="nav-link " href="/article/1">关于</a>
+                    </li>
+                <#--<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown03" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown03">
@@ -26,7 +29,7 @@
                         <a class="dropdown-item" href="#">Another action</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                </li>
+                </li>-->
             </ul>
             <form class="form-inline my-2 my-md-0">
                 <input class="form-control" type="text" placeholder="Search">

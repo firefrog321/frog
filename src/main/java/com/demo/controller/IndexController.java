@@ -4,6 +4,7 @@ import com.demo.dao.UserDao;
 import com.demo.domain.Article;
 import com.demo.domain.User;
 import com.demo.service.ArticleService;
+import com.demo.utils.ConstantsUtils;
 import com.demo.utils.MarkDownUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,7 +24,7 @@ import static com.demo.controller.ArticleController.artcileSubStr;
  **/
 @Controller
 public class IndexController {
-    private static final int SUBSTR_SIZE = 100; //截取字符串长度
+
 
     @Autowired
     private UserDao userDao;
@@ -43,7 +44,7 @@ public class IndexController {
         Iterator<Article> it = articlePage.getContent().iterator();
         while (it.hasNext()) {
             Article article = it.next();
-            article.setPreview(artcileSubStr(article.getContent(), SUBSTR_SIZE));
+            article.setPreview(artcileSubStr(article.getContent(), ConstantsUtils.PREVIEW_SUBSTR_SIZE));
         }
         model.addAttribute("articlePage", articlePage);
         return "index";

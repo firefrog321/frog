@@ -8,13 +8,20 @@
         <div class="col-md-9 page-content">
             <div class="dict" style="text-align: center; margin-bottom: 0;padding: 0;">
                 <h3 style="margin: 0; border: 0;">${article.title}</h3>
+                <p style="font-size: 20px;">
+                <#list article.tags?split(",") as tag>
+                    <a class="small" href="/article/page/1?queryTags=${tag}">${tag}</a>
+                </#list>
+                </p>
             </div>
         ${article.content}
 
             <div id="container"></div>
         </div>
 
-
+        <div class="col-md-3 d-none d-md-block">
+            <div id="frog_sidebar"></div>
+        </div>
     </div>
     <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
     <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
@@ -33,5 +40,8 @@
         gitalk.render('container');
     </script>
 <#include "footer.ftl">
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
 </body>
 </html>

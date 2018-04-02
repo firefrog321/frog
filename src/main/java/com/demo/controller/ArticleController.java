@@ -4,6 +4,7 @@ package com.demo.controller;
 import com.demo.dao.ArticleDao;
 import com.demo.domain.Article;
 import com.demo.service.ArticleService;
+import com.demo.utils.ConstantsUtils;
 import com.demo.utils.MarkDownUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Iterator;
 
 /**
  * @author Mr.Deng
@@ -57,6 +61,49 @@ public class ArticleController {
         model.addAttribute("articlePage", articlePage);
         return "index";
     }
+    /**
+     * 分页
+     * page 页码 起始值1
+     * tags 标签，可以为空
+     * model 返回的数据集合
+     * Created on 2018/3/28 14:05
+     **/
+    @RequestMapping("/article/page/{page}")
+    public String getArticlePage(@PathVariable int page,
+                                 @RequestParam(value="queryTags",required=false) String tags,
+                                 Model model) {
+        //获取首页文章列表
+        Page<Article> articlePage = articleService.getArticleByTags(tags,page-1);
+        //获取文章的预览
+        Iterator<Article> it = articlePage.getContent().iterator();
+        while (it.hasNext()) {
+            Article article = it.next();
+            article.setPreview(artcileSubStr(article.getContent(), ConstantsUtils.PREVIEW_SUBSTR_SIZE));
+        }
+
+
+        model.addAttribute("articlePage", articlePage);
+        model.addAttribute("queryTags", tags);
+        return "index";
+    }
+
+  /*  *//**
+     * 分页
+     * Created on 2018/3/28 14:05
+     **//*
+    @RequestMapping("/article/tags/{tags}")
+    public String getArticleByTags(@PathVariable String tags,Model model) {
+        //获取首页文章列表
+        Page<Article> articlePage = articleService.getArticleByTags(tags,0);
+        //获取文章的预览
+        Iterator<Article> it = articlePage.getContent().iterator();
+        while (it.hasNext()) {
+            Article article = it.next();
+            article.setPreview(artcileSubStr(article.getContent(), ConstantsUtils.PREVIEW_SUBSTR_SIZE));
+        }
+        model.addAttribute("articlePage", articlePage);
+        return "index";
+    }*/
 
     /**
      * 截取文章，显示预览
@@ -66,8 +113,9 @@ public class ArticleController {
      *                Created on 2018/3/28 10:32
      **/
     static String artcileSubStr(String content, int length) {
-        if (content.length() < length) length = content.length();
-        //转换成HTML
-        return MarkDownUtils.mdToText(content.substring(0, length));
+        String txt =MarkDownUtils.mdToText(content);
+        if (txt.length() < length) length = txt.length();
+        //转换成TXT
+        return txt.substring(0, length);
     }
 }
