@@ -21,5 +21,5 @@ public interface ArticleDao extends JpaRepository<Article, Integer>, JpaSpecific
     //更新浏览数量
     @Modifying
     @Query("update Article set view_num= view_num + 1 where articleId =?1")
-    void updateArticleViewNum(int articleId);
+    void updateViewNum(int articleId);
 }

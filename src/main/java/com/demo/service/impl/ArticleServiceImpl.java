@@ -63,7 +63,7 @@ public class ArticleServiceImpl implements ArticleService {
         //List<Page<Article>> list = new ArrayList<Page<Article>>();
         //list.add(articlePage);
         redisService.set(ConstantsUtils.REDIS_ARTICLE_KEY + "page_" + page, articlePage,
-                ConstantsUtils.REDIS_ARTICLE_TIME, TimeUnit.MINUTES);
+                ConstantsUtils.REDIS_ARTICLE_TIME, TimeUnit.SECONDS);
 
         return articlePage;
     }
@@ -85,7 +85,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setContent(MarkDownUtils.mdToHtml(article.getContent()));
         //存入redis
         redisService.set(ConstantsUtils.REDIS_ARTICLE_KEY + articleId, article,
-                ConstantsUtils.REDIS_ARTICLE_TIME, TimeUnit.MINUTES);
+                ConstantsUtils.REDIS_ARTICLE_TIME, TimeUnit.SECONDS);
 
         return article;
     }
@@ -105,7 +105,7 @@ public class ArticleServiceImpl implements ArticleService {
 
         //刷新redis缓存
         redisService.set(ConstantsUtils.REDIS_ARTICLE_KEY + article.getArticleId(), article,
-                ConstantsUtils.REDIS_ARTICLE_TIME, TimeUnit.MINUTES);
+                ConstantsUtils.REDIS_ARTICLE_TIME, TimeUnit.SECONDS);
 
         return null;
     }
@@ -114,7 +114,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     @Transactional
     public void updateArticleViewNum(int articleId) {
-        articleDao.updateArticleViewNum(articleId);
+        articleDao.updateViewNum(articleId);
     }
 
 

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Iterator;
 
+
 /**
  * @author Mr.Deng
  * Created on 2018/3/27 15:29
@@ -31,11 +32,12 @@ public class ArticleController {
 
     @RequestMapping("/article/{articleid}")
     public String viewArticle(@PathVariable int articleid, Model model) {
-        model.addAttribute("article", articleService.findById(articleid));
-
         //更新浏览数量
         articleService.updateArticleViewNum(articleid);
 
+        //这一段放上面，如果model中article的数据和数据库不一样，update会更新article中的数据，
+        //恰好findbyid方法将md格式转换成了html，导致update浏览数量时将数据库的md格式更新为HTML
+        model.addAttribute("article", articleService.findById(articleid));
         return "article_viewPage";
     }
 
@@ -61,6 +63,7 @@ public class ArticleController {
         model.addAttribute("articlePage", articlePage);
         return "index";
     }
+
     /**
      * 分页
      * page 页码 起始值1
@@ -70,10 +73,10 @@ public class ArticleController {
      **/
     @RequestMapping("/article/page/{page}")
     public String getArticlePage(@PathVariable int page,
-                                 @RequestParam(value="queryTags",required=false) String tags,
+                                 @RequestParam(value = "queryTags", required = false) String tags,
                                  Model model) {
         //获取首页文章列表
-        Page<Article> articlePage = articleService.getArticleByTags(tags,page-1);
+        Page<Article> articlePage = articleService.getArticleByTags(tags, page - 1);
         //获取文章的预览
         Iterator<Article> it = articlePage.getContent().iterator();
         while (it.hasNext()) {
@@ -87,7 +90,7 @@ public class ArticleController {
         return "index";
     }
 
-  /*  *//**
+    /*  *//**
      * 分页
      * Created on 2018/3/28 14:05
      **//*
@@ -113,7 +116,7 @@ public class ArticleController {
      *                Created on 2018/3/28 10:32
      **/
     static String artcileSubStr(String content, int length) {
-        String txt =MarkDownUtils.mdToText(content);
+        String txt = MarkDownUtils.mdToText(content);
         if (txt.length() < length) length = txt.length();
         //转换成TXT
         return txt.substring(0, length);
