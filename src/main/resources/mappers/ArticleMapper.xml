@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.ArticleDao">
+    <resultMap id="BaseResultMap" type="com.demo.domain.Article">
+        <id column="article_id" jdbcType="INTEGER" property="articleId"/>
+        <result column="author" jdbcType="VARCHAR" property="author"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="create_date" jdbcType="VARCHAR" property="createDate"/>
+        <result column="is_page" jdbcType="VARCHAR" property="isPage"/>
+        <result column="tags" jdbcType="VARCHAR" property="tags"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="view_num" jdbcType="INTEGER" property="viewNum"/>
+        <result column="preview" jdbcType="VARCHAR" property="preview"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    article_id, author, content, create_date, is_page, tags, title, view_num, preview
+  </sql>
+
+    <sql id="Base_OrderBy">
+    order by create_date desc,article_id desc
+  </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from article
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </select>
+
+    <select id="findArticle" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from article
+        where 1=1
+        <if test="tags!=null">
+            and tags like CONCAT('%',#{tags},'%')
+        </if>
+        <include refid="Base_OrderBy"/>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.demo.domain.Article">
+    insert into article (article_id, author, content, 
+      create_date, is_page, tags, 
+      title, view_num, preview
+      )
+    values (#{articleId,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=VARCHAR}, #{isPage,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{viewNum,jdbcType=INTEGER}, #{preview,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.demo.domain.Article">
+        insert into article
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="articleId != null">
+                article_id,
+            </if>
+            <if test="author != null">
+                author,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="isPage != null">
+                is_page,
+            </if>
+            <if test="tags != null">
+                tags,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="viewNum != null">
+                view_num,
+            </if>
+            <if test="preview != null">
+                preview,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="articleId != null">
+                #{articleId,jdbcType=INTEGER},
+            </if>
+            <if test="author != null">
+                #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=VARCHAR},
+            </if>
+            <if test="isPage != null">
+                #{isPage,jdbcType=VARCHAR},
+            </if>
+            <if test="tags != null">
+                #{tags,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="viewNum != null">
+                #{viewNum,jdbcType=INTEGER},
+            </if>
+            <if test="preview != null">
+                #{preview,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.demo.domain.Article">
+        update article
+        <set>
+            <if test="author != null">
+                author = #{author,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=VARCHAR},
+            </if>
+            <if test="isPage != null">
+                is_page = #{isPage,jdbcType=VARCHAR},
+            </if>
+            <if test="tags != null">
+                tags = #{tags,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="viewNum != null">
+                view_num = #{viewNum,jdbcType=INTEGER},
+            </if>
+            <if test="preview != null">
+                preview = #{preview,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.demo.domain.Article">
+    update article
+    set author = #{author,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=VARCHAR},
+      is_page = #{isPage,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      view_num = #{viewNum,jdbcType=INTEGER},
+      preview = #{preview,jdbcType=VARCHAR}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+</mapper>

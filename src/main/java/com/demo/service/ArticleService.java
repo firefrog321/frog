@@ -1,6 +1,7 @@
 package com.demo.service;
 
 import com.demo.domain.Article;
+import com.github.pagehelper.PageInfo;
 import org.springframework.data.domain.Page;
 
 /**
@@ -9,7 +10,7 @@ import org.springframework.data.domain.Page;
  **/
 public interface ArticleService {
     //分页
-    Page<Article> findArticlePage(int page);
+    PageInfo findArticlePage(String tags,int page);
 
     Article findById(int articleId);
 
@@ -17,7 +18,5 @@ public interface ArticleService {
 
     //更新浏览数量
     void updateArticleViewNum(int articleId);
-    //根据tags查询文章，只支持单个tags
-    Page<Article> getArticleByTags(String tags,int page);
 
 }

@@ -1,25 +1,40 @@
 package com.demo.dao;
 
 import com.demo.domain.Article;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-/**
- * @author Mr.Deng
- * Created on 2018/3/27 13:52
- **/
-public interface ArticleDao extends JpaRepository<Article, Integer>, JpaSpecificationExecutor<Article> {
+import java.util.List;
+import java.util.Map;
 
-    Page<Article> findAll(Pageable pageable);
+@Repository
+public interface ArticleDao {
+    /**
+     * @param article
+     * @return int
+     **/
+    void insert(Article article);
 
-    Article findById(int articleId);
+    /**
+     * @param
+     * @return
+     **/
+    Article selectByPrimaryKey(Integer articleId);
 
-    //更新浏览数量
-    @Modifying
-    @Query("update Article set view_num= view_num + 1 where articleId =?1")
+    /**
+     * @param
+     * @return
+     **/
+    List<Article> findArticle(Map map);
+
+
+    /**
+     * 更新浏览数量
+     *
+     * @param articleId 主键
+     **/
+    @Update("update article set view_num= view_num + 1 where article_id =#{articleId}")
     void updateViewNum(int articleId);
 }

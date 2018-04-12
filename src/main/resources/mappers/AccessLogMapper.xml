@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.AccessLogDao">
+  <resultMap id="BaseResultMap" type="com.demo.domain.AccessLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="access_class" jdbcType="VARCHAR" property="accessClass" />
+    <result column="access_method" jdbcType="VARCHAR" property="accessMethod" />
+    <result column="access_time" jdbcType="VARCHAR" property="accessTime" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, access_class, access_method, access_time, address, ip
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from accesslog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from accesslog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.demo.domain.AccessLog">
+    insert into accesslog (id, access_class, access_method, 
+      access_time, address, ip
+      )
+    values (#{id,jdbcType=INTEGER}, #{accessClass,jdbcType=VARCHAR}, #{accessMethod,jdbcType=VARCHAR}, 
+      #{accessTime,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}
+      )
+  </insert>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.demo.domain.AccessLog">
+    update accesslog
+    set access_class = #{accessClass,jdbcType=VARCHAR},
+      access_method = #{accessMethod,jdbcType=VARCHAR},
+      access_time = #{accessTime,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

@@ -1,22 +1,13 @@
 package com.demo.controller;
 
 import com.demo.dao.UserDao;
-import com.demo.domain.Article;
-import com.demo.domain.User;
+
 import com.demo.service.ArticleService;
-import com.demo.utils.ConstantsUtils;
-import com.demo.utils.MarkDownUtils;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.Iterator;
-import java.util.List;
-
-import static com.demo.controller.ArticleController.artcileSubStr;
 
 /**
  * @author Mr.Deng
@@ -24,10 +15,6 @@ import static com.demo.controller.ArticleController.artcileSubStr;
  **/
 @Controller
 public class IndexController {
-
-
-    @Autowired
-    private UserDao userDao;
 
     @Autowired
     private ArticleService articleService;
@@ -37,27 +24,10 @@ public class IndexController {
      * Created on 2018/3/28 14:05
      **/
     @RequestMapping("/")
-    public String index(Model model) {
+    public String index(Model model) throws Exception {
+        PageInfo articlePage = articleService.findArticlePage("", 1);
         //获取首页文章列表
-        Page<Article> articlePage = articleService.findArticlePage(0);
-        //获取文章的预览
-        Iterator<Article> it = articlePage.getContent().iterator();
-        while (it.hasNext()) {
-            Article article = it.next();
-            article.setPreview(artcileSubStr(article.getContent(), ConstantsUtils.PREVIEW_SUBSTR_SIZE));
-        }
         model.addAttribute("articlePage", articlePage);
         return "index";
-    }
-
-    @RequestMapping("/login")
-    public String login() {
-        return "index";
-    }
-
-    @RequestMapping("/user")
-    @ResponseBody
-    public List<User> user() {
-        return userDao.findAll();
     }
 }

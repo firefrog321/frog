@@ -7,6 +7,7 @@ import com.demo.utils.LoggerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -30,15 +31,17 @@ public class AccessLogServiceImpl implements AccessLogService {
     public AccessLog save(AccessLog accessLog) {
         String ip = accessLog.getIp();
         //存入当前日期
-        accessLog.setAccesstime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        accessLog.setAccessTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         accessLog.setAddress(LoggerUtils.getAddressByIP(ip));
 
         //根据IP查找记录
         String time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         int count = accessLogDao.queryCount(ip, time);
+
         //防止写入过多
-        if (count <20) {
-            accessLogDao.save(accessLog);
+        int maxAmount = 20;
+        if (count < maxAmount) {
+            accessLogDao.insert(accessLog);
         }
         return null;
     }

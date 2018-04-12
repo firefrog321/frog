@@ -8,7 +8,7 @@
         <div class="col-md-8 main">
             <!--tags查询用-->
             <input id="queryTags" type="hidden" value="${queryTags!}">
-            <#list articlePage.content as article>
+            <#list articlePage.list as article>
                 <div class="card mb-4 box-shadow">
                     <div class="card-body">
                         <div onclick="window.open('/article/' + ${article.articleId}, '_self');"></div>
@@ -54,8 +54,8 @@
 <script>
     //分页
     $('#pagination').twbsPagination({
-        startPage: ${articlePage.number + 1},
-        totalPages: ${articlePage.totalPages},
+        startPage: ${articlePage.pageNum},
+        totalPages: ${articlePage.pages},
         visiblePages: 10,
         initiateStartPageClick: false,
         first: "<<",

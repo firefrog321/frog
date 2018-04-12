@@ -1,7 +1,9 @@
 package com.demo.dao;
 
 import com.demo.domain.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import jdk.nashorn.internal.objects.annotations.Setter;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -9,9 +11,13 @@ import java.util.List;
  * @author Mr.Deng
  * Created on 2018/3/26 15:07
  **/
-public interface UserDao extends JpaRepository<User, Integer>{
+@Repository
+public interface UserDao {
 
-    List<User> findAll();
-
-    User findByUsername(String username);
+    /**
+     * 登陆验证
+     * @param user user
+     * @return user在数据库的数量
+     */
+    int loginValidate(User user);
 }

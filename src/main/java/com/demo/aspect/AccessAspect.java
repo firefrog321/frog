@@ -60,14 +60,14 @@ public class AccessAspect {
         accessLog.setIp(LoggerUtils.getCliectIp(request));
 
         //请求的类及名称
-        accessLog.setAccessclass( proceedingJoinPoint.getSignature().getDeclaringTypeName());
-        accessLog.setAccessmethod(proceedingJoinPoint.getSignature().getName());
+        accessLog.setAccessClass( proceedingJoinPoint.getSignature().getDeclaringTypeName());
+        accessLog.setAccessMethod(proceedingJoinPoint.getSignature().getName());
 
         accessLogService.save(accessLog);
 
         //obj之前可以写目标方法执行前的逻辑
-        Object obj = proceedingJoinPoint.proceed();//调用执行目标方法
-        return obj;
+        //调用执行目标方法
+        return proceedingJoinPoint.proceed();
 
     }
 }
