@@ -1,7 +1,5 @@
 package com.demo.controller;
 
-import com.demo.dao.UserDao;
-
 import com.demo.service.ArticleService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
