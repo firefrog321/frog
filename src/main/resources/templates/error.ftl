@@ -17,11 +17,12 @@
  <hr>
  异常跟踪信息:${stackTrace!}-->
     <h1>卧槽。。。报错了！${status!}</h1>
+
+    <h2>${message!}</h2>
+    <hr>
+    <h2>${error!}</h2>
+    <hr>
     ${cause!}
-    <hr>
-    ${error!}
-    <hr>
-    ${message!}
     <hr>
     ${stackTrace!}
 

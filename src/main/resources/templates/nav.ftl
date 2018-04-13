@@ -14,10 +14,10 @@
                 </li>-->
                <#-- <li class="nav-item">
                     <a class="nav-link" href="/login">登陆</a>
-                </li>
+                </li>-->
                 <li class="nav-item" >
                     <a class="nav-link " href="/article/editor">发布文章</a>
-                </li>-->
+                </li>
                     <li class="nav-item" >
                         <a class="nav-link " href="/article/1">关于</a>
                     </li>

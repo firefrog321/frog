@@ -3,8 +3,8 @@
 <head>
     <#include "header.ftl">
     <!--editor.md css-->
-    <link rel="stylesheet" href="/editormd/examples/css/style.css"/>
-    <link rel="stylesheet" href="/editormd/css/editormd.css"/>
+    <link rel="stylesheet" href="/editormd/css/editormd.min.css"/>
+    <#--<link rel="stylesheet" href="/editormd/css/editormd.css"/>-->
 </head>
 <body>
 
@@ -23,7 +23,7 @@
         </div>
 
         <div id="layout">
-            <div id="test-editormd">
+            <div id="editormd">
                 <textarea name = "content" style="display:none;"></textarea>
             </div>
         </div>
@@ -36,7 +36,7 @@
     var testEditor;
 
     $(function () {
-        testEditor = editormd("test-editormd", {
+        testEditor = editormd("editormd", {
             width: "100%",
             height: 540,
             syncScrolling: "single",
