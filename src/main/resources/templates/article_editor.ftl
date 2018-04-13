@@ -13,7 +13,7 @@
 
     <form action="/article/save" method="post">
 
-        <div style="margin-top: 80px">
+        <div style="margin-top: 80px ">
             <#--<input type="hidden" name="articleId" value="">-->
             <label>标题</label>
             <input type="text" name="title">
@@ -39,10 +39,18 @@
         testEditor = editormd("editormd", {
             width: "100%",
             height: 540,
+            emoji : true,
             syncScrolling: "single",
             path: "/editormd/lib/"
         });
+        editormd.emoji = {
+            path  : '/editormd/emojis/',
+            ext   : '.png'
+        };
+
     });
+
+
 </script>
 
 </body>
