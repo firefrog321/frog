@@ -12,20 +12,20 @@ import java.util.Map;
 @Repository
 public interface ArticleDao {
     /**
-     * @param article
+     * @param article article
      * @return int
      **/
     void insert(Article article);
 
     /**
      * @param
-     * @return
+     * @return article
      **/
     Article selectByPrimaryKey(Integer articleId);
 
     /**
-     * @param
-     * @return
+     * @param map map
+     * @return list
      **/
     List<Article> findArticle(Map map);
 
@@ -37,4 +37,10 @@ public interface ArticleDao {
      **/
     @Update("update article set view_num= view_num + 1 where article_id =#{articleId}")
     void updateViewNum(int articleId);
+
+    /**
+     * 更新编辑的内容,主要有标题，标签，内容
+     * @param article article
+     */
+    void updateArticleEditor(Article article);
 }

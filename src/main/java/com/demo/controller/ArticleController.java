@@ -31,19 +31,28 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
-    @RequestMapping("/article/{articleid}")
-    public String viewArticle(@PathVariable int articleid, Model model) {
+    @RequestMapping("/article/{articleId}")
+    public String viewArticle(@PathVariable int articleId, Model model) throws Exception{
 
-        model.addAttribute("article", articleService.findById(articleid));
+        model.addAttribute("article", articleService.getArticleToView(articleId));
         return "article_viewPage";
     }
 
     /**
-     * 文章编辑
+     * 文章创建
      * Created on 2018/3/27 16:50
      **/
     @RequestMapping("/article/editor")
     public String articleEditor() {
+        return "article_editor";
+    }
+
+    /**
+     * 编辑存在的文章
+     */
+    @RequestMapping("/article/{articleId}/editor")
+    public String articleEditorById(@PathVariable int articleId, Model model) {
+        model.addAttribute("article", articleService.findById(articleId));
         return "article_editor";
     }
 

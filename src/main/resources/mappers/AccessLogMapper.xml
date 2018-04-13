@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.demo.dao.AccessLogDao">
-  <resultMap id="BaseResultMap" type="com.demo.domain.AccessLog">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="access_class" jdbcType="VARCHAR" property="accessClass" />
-    <result column="access_method" jdbcType="VARCHAR" property="accessMethod" />
-    <result column="access_time" jdbcType="VARCHAR" property="accessTime" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="ip" jdbcType="VARCHAR" property="ip" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="com.demo.domain.AccessLog">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="access_class" jdbcType="VARCHAR" property="accessClass"/>
+        <result column="access_method" jdbcType="VARCHAR" property="accessMethod"/>
+        <result column="access_time" jdbcType="VARCHAR" property="accessTime"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="access_quantity" jdbcType="INTEGER" property="accessQuantity"/>
+    </resultMap>
 
-  <sql id="Base_Column_List">
-    id, access_class, access_method, access_time, address, ip
+    <sql id="Base_Column_List">
+    id, access_class, access_method, access_time, address, ip, access_quantity
   </sql>
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from accesslog
-    where id = #{id,jdbcType=INTEGER}
+    <select id="queryCount" parameterType="com.demo.domain.AccessLog" resultType="java.lang.Integer">
+    select count(*)
+     from accesslog
+    where access_class = #{accessClass}
+      and access_method = #{accessMethod}
+      and ip = #{ip}
+     and substring(access_time,1,10)=substring(#{accessTime},1,10)
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from accesslog
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-
-  <insert id="insert" parameterType="com.demo.domain.AccessLog">
+    <insert id="insert" parameterType="com.demo.domain.AccessLog">
     insert into accesslog (id, access_class, access_method, 
       access_time, address, ip
       )
@@ -35,15 +33,14 @@
       )
   </insert>
 
-
-  <update id="updateByPrimaryKey" parameterType="com.demo.domain.AccessLog">
+    <update id="updateAccessQuantity" parameterType="com.demo.domain.AccessLog">
     update accesslog
-    set access_class = #{accessClass,jdbcType=VARCHAR},
-      access_method = #{accessMethod,jdbcType=VARCHAR},
-      access_time = #{accessTime,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      ip = #{ip,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    set access_quantity =access_quantity+1
+    where access_class = #{accessClass}
+      and access_method = #{accessMethod}
+      and ip = #{ip}
+      and substring(access_time,1,10)=substring(#{accessTime},1,10)
+
   </update>
 
 </mapper>

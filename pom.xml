@@ -60,6 +60,12 @@
             <version>1.3.2</version>
         </dependency>
 
+        <!--Redis共享session-->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

@@ -15,6 +15,8 @@ public class AccessLog implements Serializable {
 
     private String ip;
 
+    private int accessQuantity;
+
     public Integer getId() {
         return id;
     }
@@ -61,5 +63,13 @@ public class AccessLog implements Serializable {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public int getAccessQuantity() {
+        return accessQuantity;
+    }
+
+    public void setAccessQuantity(int accessQuantity) {
+        this.accessQuantity = accessQuantity;
     }
 }

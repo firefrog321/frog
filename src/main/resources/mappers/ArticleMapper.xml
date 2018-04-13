@@ -155,4 +155,13 @@
       preview = #{preview,jdbcType=VARCHAR}
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
+
+
+    <update id="updateArticleEditor" parameterType="com.demo.domain.Article">
+    update article
+       set content = #{content},
+           tags = #{tags},
+           title = #{title}
+     where article_id = #{articleId}
+  </update>
 </mapper>

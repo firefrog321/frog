@@ -35,6 +35,7 @@ public class LoginController {
             model.addAttribute("message","用户名密码错误");
             return "login";
         }
+        // todo 如果输入/login直接进入，会重复请求login，小BUG
         response.sendRedirect(getReferer());
         return "";
     }

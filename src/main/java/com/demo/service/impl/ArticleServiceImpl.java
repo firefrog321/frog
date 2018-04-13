@@ -38,9 +38,6 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     RedisService redisService;
 
-    /**
-     * 分页查询Article
-     **/
     @Override
     @SuppressWarnings("unchecked")
     public PageInfo findArticlePage(String tags, int page) {
@@ -76,19 +73,23 @@ public class ArticleServiceImpl implements ArticleService {
         return articlePage;
     }
 
-    /**
-     * 查询单条数据
-     * Redis更新：先看缓存是否存在，不存在才去数据库获取，同时保存到缓存中
-     * Created on 2018/3/30 19:57
-     **/
     @Override
     public Article findById(int articleId) {
+        return articleDao.selectByPrimaryKey(articleId);
+    }
+
+    @Override
+    public Article getArticleToView(int articleId) throws Exception {
 
         if (redisService.haskey(REDIS_ARTICLE_KEY + articleId)) {
             return (Article) redisService.get(REDIS_ARTICLE_KEY + articleId);
         }
 
-        Article article = articleDao.selectByPrimaryKey(articleId);
+        Article article = findById(articleId);
+
+        if (article == null) {
+            throw new Exception("article没有找到");
+        }
         //md to html
         article.setContent(MarkDownUtils.mdToHtml(article.getContent()));
         //存入redis
@@ -99,17 +100,22 @@ public class ArticleServiceImpl implements ArticleService {
         updateArticleViewNum(articleId);
 
         return article;
+
     }
 
-    /**
-     * 保存文章
-     * 同时刷新redis缓存
-     * Created on 2018/3/28 10:00
-     **/
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Article save(Article article) {
         article.setAuthor("dengym");
+
+        // 数据库已经存在只更新
+        // todo 是否需要刷新缓存？
+        if (article.getArticleId() != null && findById(article.getArticleId()) != null) {
+            articleDao.updateArticleEditor(article);
+            return null;
+        }
+
         article.setCreateDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         article.setViewNum(0);
         articleDao.insert(article);
@@ -121,11 +127,6 @@ public class ArticleServiceImpl implements ArticleService {
         return null;
     }
 
-    /**
-     * 更新浏览数量
-     *
-     * @param articleId 主键
-     **/
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateArticleViewNum(int articleId) {
@@ -135,7 +136,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     public PageInfo setPreview(PageInfo pageInfo) {
         for (Article article : (Iterable<Article>) pageInfo.getList()) {
-            article.setPreview(artcileSubStr(article.getContent(), PREVIEW_SUBSTR_SIZE));
+            article.setPreview(articleSubStr(article.getContent(), PREVIEW_SUBSTR_SIZE));
         }
         return pageInfo;
     }
@@ -147,7 +148,7 @@ public class ArticleServiceImpl implements ArticleService {
      * @param length  要截取文字的个数
      *                Created on 2018/3/28 10:32
      **/
-    public String artcileSubStr(String content, int length) {
+    public String articleSubStr(String content, int length) {
         String txt = MarkDownUtils.mdToText(content);
         if (txt.length() < length) {
             length = txt.length();

@@ -23,10 +23,6 @@ public class AccessLogServiceImpl implements AccessLogService {
     @Autowired
     AccessLogDao accessLogDao;
 
-    /**
-     * 保存日志
-     * Created on 2018/3/28 10:00
-     **/
     @Override
     public AccessLog save(AccessLog accessLog) {
         String ip = accessLog.getIp();
@@ -35,12 +31,11 @@ public class AccessLogServiceImpl implements AccessLogService {
         accessLog.setAddress(LoggerUtils.getAddressByIP(ip));
 
         //根据IP查找记录
-        String time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        int count = accessLogDao.queryCount(ip, time);
+        //String time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
-        //防止写入过多
-        int maxAmount = 20;
-        if (count < maxAmount) {
+        if (accessLogDao.queryCount(accessLog) >0){
+            accessLogDao.updateAccessQuantity(accessLog);
+        }else{
             accessLogDao.insert(accessLog);
         }
         return null;

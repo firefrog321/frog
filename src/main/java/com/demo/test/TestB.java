@@ -1,6 +1,9 @@
 package com.demo.test;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
+import java.util.Random;
 
 public class TestB {
 
@@ -22,7 +25,9 @@ public class TestB {
 
 
     public static void main(String[] args) {
-        System.out.println(new TestB().fly());
+        String s=
+        new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        System.out.println(new Random().nextLong());
     }
 
 }

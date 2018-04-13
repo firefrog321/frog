@@ -37,7 +37,7 @@ public class AccessAspect {
      * ~ 第五个 * 任意方法
      * ~ .. 匹配任意数量的参数.
      */
-    @Pointcut("execution(* com.demo.controller.IndexController.index(..))")
+    @Pointcut("execution(* com.demo.controller..*(..))")
     public void point() {
     }
 

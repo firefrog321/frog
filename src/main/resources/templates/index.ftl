@@ -42,9 +42,19 @@
         </div>
 
         <div class="col-md-4 d-none d-md-block">
-            <div style="position: fixed;">
+            <div  class="sub01" style="position: fixed;">
                 <img src="/images/0.gif" class=" frog-index-jokerimage ">
+                <div class="social" style="margin-top: 30px">
+                    <div>我的其他链接：</div>
+                    <a class="social rss" target="blank" href="/feed">RSS</a>&nbsp;&nbsp;&nbsp;
+                <#-- <a class="social zhihu" target="blank" href="https://www.zhihu.com/people/jcker.org">知乎</a>&nbsp;&nbsp;
+                -->
+                    <a class="social github" target="blank" href="https://github.com/firefrog321/frog">Github</a>&nbsp;&nbsp;
+                    <a class="social twitter" target="blank" href="https://twitter.com/dayumom1">Twitter</a>&nbsp;&nbsp;
+                    <a class="social csdn" target="blank" href="https://my.csdn.net/qq_22839955">CSDN</a>
+                </div>
             </div>
+
         </div>
 
     </div>
