@@ -7,27 +7,20 @@ import java.util.Random;
 
 public class TestB {
 
-
-    public void eat() {
-        System.out.print("B类的eat方法");
+    public TestB(){
+        System.out.println("Test构造函数执行");
     }
-
-    public int fly() {
-        int x = 1;
-        try {
-            return x;
-        } finally {
-            return 2;
-        }
-
+    static{
+        System.out.println("static语句块执行");
     }
-
+    public static void display(){
+        System.out.println("静态方法被执行");
+    }
 
 
     public static void main(String[] args) {
-        String s=
-        new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        System.out.println(new Random().nextLong());
+       TestB b = new TestB();
+       b.display();
     }
 
 }

@@ -11,5 +11,5 @@ public class ConstantsUtils {
 
     public static final int PREVIEW_SUBSTR_SIZE = 100; //截取字符串长度
 
-    public static final int REDIS_ARTICLE_TIME = 1;//redis article有效期
+    public static final int REDIS_ARTICLE_TIME = 10;//redis article有效期
 }
