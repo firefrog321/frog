@@ -1,23 +1,16 @@
 package com.demo.controller;
 
 
-import com.demo.dao.ArticleDao;
 import com.demo.domain.Article;
 import com.demo.service.ArticleService;
-import com.demo.utils.ConstantsUtils;
-import com.demo.utils.MarkDownUtils;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Iterator;
-
 
 /**
  * @author Mr.Deng
@@ -26,8 +19,6 @@ import java.util.Iterator;
 @Controller
 public class ArticleController {
 
-    @Autowired
-    ArticleDao articleDao;
     @Autowired
     private ArticleService articleService;
 

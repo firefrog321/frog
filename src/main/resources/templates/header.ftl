@@ -14,13 +14,11 @@
 
     <link rel="stylesheet" href="/css/style.css">
 
-  <#--  <link rel="stylesheet" href="/highlight/css/xcode.css">-->
-    <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/xcode.min.css" rel="stylesheet">
 
     <!--分页-->
     <link rel="stylesheet" href="/css/simplePagination.css">
     <title>frog</title>
-
 
 
 </head>

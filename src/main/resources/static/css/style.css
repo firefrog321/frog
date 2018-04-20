@@ -24,7 +24,14 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-
+/*md代码区样式*/
+.page-content pre code {
+    background-color: #f7f7f7;
+}
+/*将javadoc也变成绿色*/
+.hljs-javadoc{
+    color: #006a00;
+}
 
 /*这是百科右侧导航代码的样式表*/
 .directory-nav {
