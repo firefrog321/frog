@@ -14,7 +14,7 @@ public class FastDFSClient {
 
     static {
         try {
-            String filePath = new ClassPathResource("fdfs_client.conf").getFile().getAbsolutePath();;
+            String filePath = new ClassPathResource("fdfs_client.conf").getFile().getAbsolutePath();
             ClientGlobal.init(filePath);
             trackerClient = new TrackerClient();
             trackerServer = trackerClient.getConnection();

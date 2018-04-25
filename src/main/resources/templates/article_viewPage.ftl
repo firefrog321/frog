@@ -23,8 +23,8 @@
             <div id="frog_sidebar"></div>
         </div>
     </div>
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <link rel="stylesheet" href="/css/gitalk.css">
+    <script src="/js/gitalk.min.js"></script>
     <script>
         const gitalk = new Gitalk({
             clientID: '5e2294a8c60578ace3be',
